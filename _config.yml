@@ -1,0 +1,21 @@
+# Site settings
+title: ~/tmp/blog: Haskell shtuff
+email: thefirstmuffinman@gmail.com
+description: Linux, Haskell, other things. To be redone when I get the chance.
+#url: raehik.net
+#baseurl: ""
+twitter_username: raehik
+github_username: raehik
+
+# Default frontmatter
+defaults:
+- scope:
+    path: ""
+    type: posts
+  values:
+    layout: post
+- scope:
+    path: ""
+    type: drafts
+  values:
+    layout: post
