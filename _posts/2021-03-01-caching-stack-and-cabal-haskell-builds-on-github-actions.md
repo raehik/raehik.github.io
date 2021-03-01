@@ -30,6 +30,7 @@ Stack stores global stuff in `~/.stack`, and project stuff in `.stack-work`
 (relative to the project root). We want to cache everything, and invalidate the
 cache when one of our dependencies changes.
 
+{% raw %}
 ```yaml
 - uses: actions/cache@v2
   with:
@@ -37,10 +38,11 @@ cache when one of our dependencies changes.
       ~/.stack
       .stack-work
     # best effort for cache: tie it to Stack resolver and package config
-    key: $\{{ runner.os }}-stack-$\{{ hashFiles('stack.yaml.lock', 'package.yaml') }}
+    key: ${{ runner.os }}-stack-${{ hashFiles('stack.yaml.lock', 'package.yaml') }}
     restore-keys: |
-      $\{{ runner.os }}-stack
+      ${{ runner.os }}-stack
 ```
+{% endraw %}
 
 The primary key is derived from the Stack config. If it's not found, the latest
 cache with the prefix `linux-stack` (on Linux) will be used, and re-cached as
@@ -86,6 +88,7 @@ Then, proceed as normal. I use `cabal freeze` to generate a dependencies file to
 use as the cache key. (You may alternatively want to commit that file for a
 non-library project).
 
+{% raw %}
 ```yaml
 - name: Freeze Cabal plan
   run: cabal freeze
@@ -94,12 +97,13 @@ non-library project).
   uses: actions/cache@v2
   with:
     path: |
-      $\{{ steps.setup-haskell-build-env.outputs.cabal-store }}
+      ${{ steps.setup-haskell-build-env.outputs.cabal-store }}
       dist-newstyle
-    key: $\{{ runner.os }}-cabal-$\{{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
+    key: ${{ runner.os }}-cabal-${{ matrix.ghc }}-${{ hashFiles('cabal.project.freeze') }}
     restore-keys: |
-      $\{{ runner.os }}-cabal-$\{{ matrix.ghc }}
+      ${{ runner.os }}-cabal-${{ matrix.ghc }}
 ```
+{% endraw %}
 
 *(Take a look at [haskell/actions][haskell/actions] for explanations on the
 other features used here.)*
