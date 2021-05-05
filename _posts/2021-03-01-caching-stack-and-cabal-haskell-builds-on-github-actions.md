@@ -5,7 +5,7 @@ date: 2021-03-01
 
 [mark-karpov-github-actions]: https://markkarpov.com/post/github-actions-for-haskell-ci.html
 [github-ci-cache-docs]: https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows#using-the-cache-action
-[haskell-actions-my-issue]: https://github.com/haskell/actions/issues/41
+[haskell-actions-41]: https://github.com/haskell/actions/issues/41
 [ghc-issue-timestamp]: https://gitlab.haskell.org/ghc/ghc/-/issues/16495
 [haskell/actions]: https://github.com/haskell/actions/tree/main/setup
 
